@@ -1,0 +1,76 @@
+{
+  "artists": [
+    {
+      "id": 1,
+      "name": "Diamond Platnumz",
+      "country": "Tanzania",
+      "languages": ["Swahili", "English"],
+      "image": "https://placehold.co/300x200/9b59b6/white?text=Diamond",
+      "bio": "Nasibu Abdul Juma, known professionally as Diamond Platnumz, is a Tanzanian bongo flava recording artist, dancer, and businessman. He is one of the most successful African artists.",
+      "songs": [101, 102],
+      "dateAdded": "2026-02-15",
+      "yourRating": 5,
+      "personalNotes": "Pioneer of modern Bongo Flava"
+    },
+    {
+      "id": 2,
+      "name": "Burna Boy",
+      "country": "Nigeria",
+      "languages": ["Yoruba", "English", "Pidgin"],
+      "image": "https://placehold.co/300x200/e67e22/white?text=Burna+Boy",
+      "bio": "Damini Ebunoluwa Ogulu, known professionally as Burna Boy, is a Nigerian singer, songwriter, and record producer. He is one of the biggest Afrobeats artists globally.",
+      "songs": [201],
+      "dateAdded": "2026-02-10",
+      "yourRating": 5,
+      "personalNotes": "Brings Yoruba to global audience"
+    },
+    {
+      "id": 3,
+      "name": "Salif Keita",
+      "country": "Mali",
+      "languages": ["Bambara", "Malinké", "French"],
+      "image": "https://placehold.co/300x200/27ae60/white?text=Salif+Keita",
+      "bio": "Salif Keita is a Malian singer-songwriter. He is unique not only because of his reputation as the 'Golden Voice of Africa' but because he is an albino and a direct descendant of the founder of the Mali Empire.",
+      "songs": [501],
+      "dateAdded": "2026-02-05",
+      "yourRating": 5,
+      "personalNotes": "The Golden Voice of Africa"
+    },
+    {
+      "id": 4,
+      "name": "Angelique Kidjo",
+      "country": "Benin",
+      "languages": ["Fon", "Yoruba", "French", "English"],
+      "image": "https://placehold.co/300x200/e74c3c/white?text=Angelique+Kidjo",
+      "bio": "Angélique Kidjo is a Beninese singer-songwriter, actress, and activist who is noted for her diverse musical influences and creative music videos.",
+      "songs": [],
+      "dateAdded": "2026-02-01",
+      "yourRating": 5,
+      "personalNotes": "Grammy winner, cultural ambassador"
+    },
+    {
+      "id": 5,
+      "name": "Fela Kuti",
+      "country": "Nigeria",
+      "languages": ["Yoruba", "Pidgin", "English"],
+      "image": "https://placehold.co/300x200/c0392b/white?text=Fela+Kuti",
+      "bio": "Fela Kuti was a Nigerian multi-instrumental musician, composer, pioneer of the Afrobeat music genre, human rights activist, and political maverick.",
+      "songs": [401],
+      "dateAdded": "2026-01-28",
+      "yourRating": 5,
+      "personalNotes": "Afrobeat founder, political activist"
+    },
+    {
+      "id": 6,
+      "name": "Miriam Makeba",
+      "country": "South Africa",
+      "languages": ["Xhosa", "Zulu", "English"],
+      "image": "https://placehold.co/300x200/8e44ad/white?text=Miriam+Makeba",
+      "bio": "Miriam Makeba, nicknamed Mama Africa, was a South African singer, songwriter, actress, and civil rights activist.",
+      "songs": [301],
+      "dateAdded": "2026-01-20",
+      "yourRating": 5,
+      "personalNotes": "Mama Africa, civil rights icon"
+    }
+  ]
+}

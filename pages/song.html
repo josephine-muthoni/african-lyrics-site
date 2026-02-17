@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Lyrics - African Tongue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/languages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        /* Song Page Specific Styles */
+        .song-page {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .song-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .song-hero::before {
+            content: "🎵";
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            font-size: 8rem;
+            opacity: 0.2;
+            transform: rotate(-10deg);
+        }
+        
+        .song-title {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .song-artist-large {
+            font-size: 2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .song-metadata {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+        }
+        
+        .view-options {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .view-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--sunset-gold);
+            background: transparent;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: var(--sunset-gold);
+        }
+        
+        .view-btn:hover,
+        .view-btn.active {
+            background: var(--sunset-gold);
+            color: white;
+        }
+        
+        .lyrics-container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        
+        .lyrics-header {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-bottom: 2px solid var(--sunset-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .lyrics-header h3 {
+            color: var(--night-sky);
+            font-size: 1.5rem;
+        }
+        
+        .lyrics-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lyrics-action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .lyrics-action-btn:hover {
+            background: var(--sunset-gold);
+            color: white;
+        }
+        
+        .lyrics-content {
+            padding: 2rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        /* Bilingual line styling */
+        .lyrics-line {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+        
+        .lyrics-line:hover {
+            background: #f0f0f0;
+            border-left-color: var(--sunset-gold);
+        }
+        
+        .lyrics-line.active {
+            background: #fff3e0;
+            border-left-color: var(--savanna-orange);
+        }
+        
+        .line-number {
+            width: 50px;
+            color: #999;
+            font-weight: bold;
+        }
+        
+        .line-content {
+            flex: 1;
+        }
+        
+        .original-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: var(--night-sky);
+        }
+        
+        .translation-text {
+            color: #666;
+            font-style: italic;
+            padding-left: 1rem;
+            border-left: 2px solid #ddd;
+        }
+        
+        /* Word-by-word view */
+        .word-by-word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .word-group {
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+            min-width: 80px;
+        }
+        
+        .original-word {
+            font-weight: bold;
+            color: var(--night-sky);
+        }
+        
+        .translation-word {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* Cultural notes section */
+        .cultural-notes-section {
+            background: #e8f4f8;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--savanna-orange);
+        }
+        
+        .cultural-notes-section h3 {
+            color: var(--night-sky);
+            margin-bottom: 1rem;
+        }
+        
+        .related-songs {
+            margin: 2rem 0;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .related-song-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .related-song-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Language-specific styles */
+        [data-language="yoruba"] .original-text {
+            font-family: 'Noto Sans', sans-serif;
+        }
+        
+        [data-language="amharic"] .original-text {
+            font-family: 'Noto Serif Ethiopic', serif;
+            font-size: 1.4rem;
+        }
+        
+        .word-tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted #999;
+            cursor: help;
+        }
+        
+        .word-tooltip:hover::after {
+            content: attr(data-meaning);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            .song-title {
+                font-size: 2.5rem;
+            }
+            
+            .song-artist-large {
+                font-size: 1.5rem;
+            }
+            
+            .lyrics-line {
+                flex-direction: column;
+            }
+            
+            .line-number {
+                width: 100%;
+                margin-bottom: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <h1 class="site-title">🌍 <span class="highlight">African Tongue</span> Lyrics</h1>
+            <p class="tagline">Full Lyrics in Original Languages</p>
+        </div>
+        <div class="user-controls">
+            <button class="my-collection-btn" onclick="window.location.href='my-collection.html'">
+                <i class="fas fa-star"></i> My Collection
+            </button>
+            <button class="admin-btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-home"></i> Home
+            </button>
+        </div>
+    </header>
+    
+    <main class="song-page" id="song-page">
+        <!-- Song will be loaded dynamically -->
+    </main>
+    
+    <footer>
+        <div class="footer-stats">
+            <div class="stat">
+                <span class="stat-number" id="total-languages">124</span>
+                <span class="stat-label">Languages</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="total-songs">2,847</span>
+                <span class="stat-label">Songs</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="endangered-count">43</span>
+                <span class="stat-label">Endangered</span>
+            </div>
+        </div>
+        <p class="preservation-note">📜 Full lyrics in authentic African languages</p>
+    </footer>
+    
+    <script src="../js/language-data.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/lyrics-sync.js"></script>
+    <script>
+        // Get song ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const songId = urlParams.get('id');
+        
+        // Load song data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSongData(songId);
+        });
+        
+        function loadSongData(id) {
+            // Get song from main data
+            const song = getSong(id);
+            
+            if (!song) {
+                document.getElementById('song-page').innerHTML = '<h2>Song not found</h2>';
+                return;
+            }
+            
+            // Increment play count
+            song.plays = (song.plays || 0) + 1;
+            saveSongs();
+            
+            displaySong(song);
+            loadRelatedSongs(song);
+        }
+        
+        function displaySong(song) {
+            const container = document.getElementById('song-page');
+            
+            // Create word-by-word view if detailed translation exists
+            const hasWordByWord = song.lyrics.some(line => line.words && line.translations);
+            
+            let viewOptions = `
+                <div class="view-options">
+                    <button class="view-btn active" onclick="switchView('bilingual')">Bilingual View</button>
+                    ${hasWordByWord ? '<button class="view-btn" onclick="switchView(\'wordbyword\')">Word by Word</button>' : ''}
+                    <button class="view-btn" onclick="switchView('original')">Original Only</button>
+                </div>
+            `;
+            
+            let lyricsHtml = '';
+            song.lyrics.forEach((line, index) => {
+                const lineNum = index + 1;
+                if (line.text && line.translation) {
+                    lyricsHtml += `
+                        <div class="lyrics-line" data-line="${lineNum}">
+                            <span class="line-number">${lineNum}</span>
+                            <div class="line-content">
+                                <div class="original-text">${line.text}</div>
+                                <div class="translation-text">${line.translation}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            const culturalNotes = song.culturalNotes ? `
+                <div class="cultural-notes-section">
+                    <h3><i class="fas fa-book-open"></i> Cultural Context</h3>
+                    <p>${song.culturalNotes}</p>
+                </div>
+            ` : '';
+            
+            const html = `
+                <div class="song-hero" data-language="${song.language.toLowerCase()}">
+                    <h1 class="song-title">${song.title}</h1>
+                    <div class="song-artist-large">by ${song.artist}</div>
+                    
+                    <div class="song-metadata">
+                        <span class="metadata-item"><i class="fas fa-language"></i> ${song.language} ${song.dialect ? `(${song.dialect})` : ''}</span>
+                        <span class="metadata-item"><i class="fas fa-map-marker-alt"></i> ${song.country}</span>
+                        <span class="metadata-item"><i class="fas fa-calendar"></i> ${song.year}</span>
+                        <span class="metadata-item"><i class="fas fa-headphones"></i> ${song.plays || 0} plays</span>
+                    </div>
+                </div>
+                
+                ${viewOptions}
+                
+                <div class="lyrics-container">
+                    <div class="lyrics-header">
+                        <h3>Complete Lyrics <span class="dialect-marker">${song.dialect || 'Standard'}</span></h3>
+                        <div class="lyrics-actions">
+                            <button class="lyrics-action-btn" onclick="copyLyrics()"><i class="fas fa-copy"></i> Copy</button>
+                            <button class="lyrics-action-btn" onclick="printLyrics()"><i class="fas fa-print"></i> Print</button>
+                            <button class="lyrics-action-btn" onclick="saveToCollection()"><i class="fas fa-star"></i> Save</button>
+                        </div>
+                    </div>
+                    <div class="lyrics-content" id="lyrics-content" data-view="bilingual">
+                        ${lyricsHtml}
+                    </div>
+                </div>
+                
+                ${culturalNotes}
+                
+                <div class="related-songs" id="related-songs">
+                    <h3>More from ${song.artist}</h3>
+                    <div class="related-grid" id="related-grid"></div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+        
+        function loadRelatedSongs(currentSong) {
+            const related = mySongs.filter(s => 
+                s.artistId === currentSong.artistId && s.id !== currentSong.id
+            ).slice(0, 4);
+            
+            const grid = document.getElementById('related-grid');
+            if (!grid) return;
+            
+            if (related.length === 0) {
+                document.getElementById('related-songs').style.display = 'none';
+                return;
+            }
+            
+            related.forEach(song => {
+                const card = document.createElement('div');
+                card.className = 'related-song-card';
+                card.onclick = () => window.location.href = `song.html?id=${song.id}`;
+                card.innerHTML = `
+                    <h4>${song.title}</h4>
+                    <p>${song.language} · ${song.year}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        function switchView(view) {
+            // Update active button
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const lyricsContent = document.getElementById('lyrics-content');
+            const song = getSong(songId);
+            
+            if (view === 'bilingual') {
+                lyricsContent.innerHTML = song.lyrics.map((line, i) => `
+                    <div class="lyrics-line" data-line="${i+1}">
+                        <span class="line-number">${i+1}</span>
+                        <div class="line-content">
+                            <div class="original-text">${line.text}</div>
+                            <div class="translation-text">${line.translation}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } else if (view === 'original') {
+                lyricsContent.innerHTML = song.lyrics.map((line, i) => `
+                    <div class="lyrics-line" data-line="${i+1}">
+                        <span class="line-number">${i+1}</span>
+                        <div class="line-content">
+                            <div class="original-text">${line.text}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } else if (view === 'wordbyword' && song.lyrics[0].words) {
+                // Word by word view
+                lyricsContent.innerHTML = song.lyrics.map((line, i) => {
+                    const words = line.words || line.text.split(' ');
+                    const translations = line.translations || line.translation.split(' ');
+                    
+                    let wordHtml = '';
+                    for (let j = 0; j < words.length; j++) {
+                        wordHtml += `
+                            <span class="word-group">
+                                <span class="original-word">${words[j]}</span>
+                                <span class="translation-word">${translations[j] || ''}</span>
+                            </span>
+                        `;
+                    }
+                    
+                    return `
+                        <div class="lyrics-line" data-line="${i+1}">
+                            <span class="line-number">${i+1}</span>
+                            <div class="word-by-word-container">
+                                ${wordHtml}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+        
+        function copyLyrics() {
+            const song = getSong(songId);
+            const text = lyricsSync.copyLyrics(song);
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Lyrics copied to clipboard!');
+            });
+        }
+        
+        function printLyrics() {
+            const song = getSong(songId);
+            lyricsSync.printLyrics(song);
+        }
+        
+        function saveToCollection() {
+            let saved = JSON.parse(localStorage.getItem('savedSongs') || '[]');
+            if (!saved.includes(songId)) {
+                saved.push(songId);
+                localStorage.setItem('savedSongs', JSON.stringify(saved));
+                alert('✅ Song saved to your collection!');
+            } else {
+                alert('Song already in your collection');
+            }
+        }
+    </script>
+</body>
+</html>

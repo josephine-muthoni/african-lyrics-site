@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Family - African Tongue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/languages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .language-family-page {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .family-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .family-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .family-description {
+            max-width: 800px;
+            margin: 1rem auto;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .family-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .language-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .language-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .language-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .native-name {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+        
+        .speaker-count {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .language-details {
+            padding: 1.5rem;
+        }
+        
+        .detail-item {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .detail-item i {
+            width: 20px;
+            color: var(--savanna-orange);
+        }
+        
+        .dialects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        
+        .dialect-tag {
+            background: #f0f0f0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .endangered-badge {
+            display: inline-block;
+            background: var(--earth-red);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+        }
+        
+        .song-preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--sunset-gold);
+            background: transparent;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--sunset-gold);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <h1 class="site-title">🌍 <span class="highlight">African Tongue</span> Lyrics</h1>
+            <p class="tagline">Explore African Language Families</p>
+        </div>
+        <div class="user-controls">
+            <button class="my-collection-btn" onclick="window.location.href='my-collection.html'">
+                <i class="fas fa-star"></i> My Collection
+            </button>
+            <button class="admin-btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-home"></i> Home
+            </button>
+        </div>
+    </header>
+    
+    <main class="language-family-page" id="family-page">
+        <!-- Content will be loaded dynamically -->
+    </main>
+    
+    <footer>
+        <div class="footer-stats">
+            <div class="stat">
+                <span class="stat-number" id="language-count">0</span>
+                <span class="stat-label">Languages</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="song-count">0</span>
+                <span class="stat-label">Songs</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="speaker-count">0</span>
+                <span class="stat-label">Speakers</span>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/language-data.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const family = urlParams.get('family') || 'bantu';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFamilyData(family);
+        });
+        
+        function loadFamilyData(familyKey) {
+            const familyData = africanLanguages[familyKey];
+            if (!familyData) {
+                document.getElementById('family-page').innerHTML = '<h2>Language family not found</h2>';
+                return;
+            }
+            
+            // Calculate total songs in this family
+            const languagesInFamily = familyData.languages.map(l => l.id);
+            const songsInFamily = mySongs.filter(song => 
+                languagesInFamily.includes(song.language.toLowerCase().replace(' ', ''))
+            );
+            
+            // Calculate total speakers (approximate)
+            const totalSpeakers = familyData.languages.reduce((sum, lang) => {
+                const numStr = lang.speakers.replace(/[^0-9]/g, '');
+                const millions = parseInt(numStr) || 0;
+                return sum + millions;
+            }, 0);
+            
+            const html = `
+                <div class="family-header" style="background: ${getFamilyColor(familyKey)}">
+                    <h1>${familyData.name}</h1>
+                    <p class="family-description">${familyData.description || 'Explore songs in these languages'}</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ${familyData.region}</p>
+                    
+                    <div class="family-stats">
+                        <div class="stat">
+                            <span class="stat-number">${familyData.languages.length}</span>
+                            <span class="stat-label">Languages</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${songsInFamily.length}</span>
+                            <span class="stat-label">Songs</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${totalSpeakers}M+</span>
+                            <span class="stat-label">Speakers</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Filter Languages</h3>
+                    <div class="filter-options">
+                        <button class="filter-btn active" onclick="filterLanguages('all')">All</button>
+                        <button class="filter-btn" onclick="filterLanguages('popular')">Most Songs</button>
+                        <button class="filter-btn" onclick="filterLanguages('endangered')">Endangered</button>
+                        <button class="filter-btn" onclick="filterLanguages('has-songs')">Has Lyrics</button>
+                    </div>
+                </div>
+                
+                <div class="language-grid" id="language-grid">
+                    ${familyData.languages.map(lang => createLanguageCard(lang, songsInFamily)).join('')}
+                </div>
+            `;
+            
+            document.getElementById('family-page').innerHTML = html;
+            
+            // Update footer stats
+            document.getElementById('language-count').textContent = familyData.languages.length;
+            document.getElementById('song-count').textContent = songsInFamily.length;
+            document.getElementById('speaker-count').textContent = totalSpeakers + 'M+';
+        }
+        
+        function createLanguageCard(lang, songsInFamily) {
+            const songsInLang = mySongs.filter(s => 
+                s.language.toLowerCase().includes(lang.name.toLowerCase()) ||
+                lang.name.toLowerCase().includes(s.language.toLowerCase())
+            );
+            
+            const hasSongs = songsInLang.length > 0;
+            const sampleSong = hasSongs ? songsInLang[0] : null;
+            
+            return `
+                <div class="language-card" onclick="window.location.href='../pages/search.html?q=${lang.name}'">
+                    <div class="language-header">
+                        <div class="language-name">${lang.name}</div>
+                        <div class="native-name">${lang.nativeName}</div>
+                        <span class="speaker-count">${lang.speakers}</span>
+                        ${lang.endangered ? '<span class="endangered-badge">🌍 ENDANGERED</span>' : ''}
+                    </div>
+                    
+                    <div class="language-details">
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${lang.countries.join(' · ')}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-pen"></i>
+                            <span>Script: ${lang.script}</span>
+                        </div>
+                        
+                        ${lang.dialects ? `
+                            <div class="detail-item">
+                                <i class="fas fa-comments"></i>
+                                <div class="dialects">
+                                    ${lang.dialects.slice(0, 3).map(d => 
+                                        `<span class="dialect-tag">${d}</span>`
+                                    ).join('')}
+                                    ${lang.dialects.length > 3 ? `<span class="dialect-tag">+${lang.dialects.length-3}</span>` : ''}
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-music"></i>
+                            <span>${songsInLang.length} songs in collection</span>
+                        </div>
+                        
+                        ${sampleSong ? `
+                            <div class="song-preview">
+                                <strong>Sample song:</strong><br>
+                                ${sampleSong.title} by ${sampleSong.artist}
+                            </div>
+                        ` : ''}
+                        
+                        ${lang.hasClicks ? `
+                            <div class="detail-item">
+                                <i class="fas fa-info-circle"></i>
+                                <span class="click-symbol">Contains click consonants (c, q, x)</span>
+                            </div>
+                        ` : ''}
+                        
+                        ${lang.hasTones ? `
+                            <div class="detail-item">
+                                <i class="fas fa-music"></i>
+                                <span>Tonal language</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function getFamilyColor(family) {
+            const colors = {
+                'bantu': '#8B4513',
+                'west-african': '#DAA520',
+                'afro-asiatic': '#C0392B',
+                'nilotic': '#27AE60',
+                'khoisan': '#E67E22'
+            };
+            return colors[family] || '#667eea';
+        }
+        
+        function filterLanguages(filter) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const cards = document.querySelectorAll('.language-card');
+            
+            cards.forEach(card => {
+                switch(filter) {
+                    case 'all':
+                        card.style.display = 'block';
+                        break;
+                    case 'popular':
+                        // Show languages with > 10 songs
+                        const songCount = parseInt(card.querySelector('.fa-music').nextSibling.textContent);
+                        card.style.display = songCount > 10 ? 'block' : 'none';
+                        break;
+                    case 'endangered':
+                        const isEndangered = card.querySelector('.endangered-badge') !== null;
+                        card.style.display = isEndangered ? 'block' : 'none';
+                        break;
+                    case 'has-songs':
+                        const hasSongs = card.querySelector('.song-preview') !== null;
+                        card.style.display = hasSongs ? 'block' : 'none';
+                        break;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

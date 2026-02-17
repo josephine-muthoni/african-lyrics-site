@@ -1,0 +1,213 @@
+/* Language-Specific Styles */
+
+/* Swahili & Bantu Languages */
+[data-language="swahili"], .swahili-text {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Yoruba (with diacritics) */
+[data-language="yoruba"], .yoruba-text {
+    font-family: 'Noto Sans', 'Segoe UI', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.yoruba-diacritic {
+    color: var(--savanna-orange);
+    font-weight: 500;
+}
+
+/* Amharic / Ge'ez Script */
+[data-language="amharic"], .amharic-text {
+    font-family: 'Noto Serif Ethiopic', 'Nyala', 'Abyssinica SIL', serif;
+    font-size: 1.3em;
+    line-height: 2;
+    word-spacing: 0.5em;
+}
+
+/* Arabic Script Languages */
+[data-language="arabic"], .arabic-text {
+    font-family: 'Noto Naskh Arabic', 'Scheherazade', 'Traditional Arabic', serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.3em;
+}
+
+[data-language="hausa"][data-script="arabic"] {
+    font-family: 'Noto Naskh Arabic', 'Scheherazade', serif;
+    direction: rtl;
+}
+
+/* Click Languages */
+[data-language="xhosa"], .xhosa-text,
+[data-language="zulu"], .zulu-text {
+    font-family: 'Noto Sans', 'Segoe UI', sans-serif;
+}
+
+.click-symbol {
+    color: var(--earth-red);
+    font-weight: bold;
+    cursor: help;
+    border-bottom: 1px dotted;
+    font-size: 1.2em;
+}
+
+/* Language Badge Colors */
+.lang-badge[data-language="swahili"] { background: #1E88E5; }
+.lang-badge[data-language="yoruba"] { background: #E53935; }
+.lang-badge[data-language="zulu"] { background: #43A047; }
+.lang-badge[data-language="xhosa"] { background: #00ACC1; }
+.lang-badge[data-language="amharic"] { background: #FB8C00; }
+.lang-badge[data-language="hausa"] { background: #8E24AA; }
+.lang-badge[data-language="arabic"] { background: #00897B; }
+.lang-badge[data-language="lingala"] { background: #C2185B; }
+.lang-badge[data-language="shona"] { background: #7B1FA2; }
+
+/* Dialect Markers */
+.dialect-marker {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    background: #f0f0f0;
+    border-radius: 15px;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.dialect-marker.kimvita { 
+    background: #E67E22;
+    color: white;
+}
+
+.dialect-marker.kiamu { 
+    background: #27AE60;
+    color: white;
+}
+
+.dialect-marker.unguja { 
+    background: #2980B9;
+    color: white;
+}
+
+/* Pronunciation Guide */
+.pronunciation-hint {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    border-bottom: 1px dashed #ccc;
+    cursor: help;
+    position: relative;
+}
+
+.pronunciation-hint:hover::after {
+    content: attr(data-pronunciation);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/* Cultural Notes Icon */
+.cultural-note-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: var(--sunset-gold);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+    cursor: help;
+    position: relative;
+}
+
+.cultural-note-icon:hover::after {
+    content: attr(data-note);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    white-space: normal;
+    width: 200px;
+    z-index: 1000;
+}
+
+/* Language-specific font faces */
+@font-face {
+    font-family: 'Noto Serif Ethiopic';
+    src: url('../assets/fonts/NotoSerifEthiopic-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Naskh Arabic';
+    src: url('../assets/fonts/NotoNaskhArabic-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Abyssinica SIL';
+    src: url('../assets/fonts/AbyssinicaSIL-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* RTL Support for Arabic-based languages */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .lyrics-line {
+    flex-direction: row-reverse;
+}
+
+/* Tone marks for Yoruba */
+.tone-high {
+    color: #E74C3C;
+    font-weight: 500;
+}
+
+.tone-mid {
+    color: #27AE60;
+}
+
+.tone-low {
+    color: #3498DB;
+}
+
+/* Click pronunciation helper */
+.click-audio-btn {
+    background: none;
+    border: none;
+    color: var(--savanna-orange);
+    cursor: pointer;
+    margin-left: 0.3rem;
+}
+
+.click-audio-btn:hover {
+    color: var(--earth-red);
+}
+
+/* Language info tooltip */
+.lang-info {
+    cursor: help;
+    border-bottom: 1px dotted var(--sunset-gold);
+}

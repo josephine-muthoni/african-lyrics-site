@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Collection - African Tongue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/languages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .collection-page {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .collection-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .collection-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .collection-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--sunset-gold);
+        }
+        
+        .tab-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            background: #e9ecef;
+        }
+        
+        .tab.active {
+            background: var(--sunset-gold);
+            color: white;
+        }
+        
+        .tab-content {
+            padding: 2rem;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .collection-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .collection-item:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+        
+        .item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--night-sky);
+        }
+        
+        .item-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .item-meta {
+            display: flex;
+            gap: 1rem;
+            color: #999;
+            font-size: 0.8rem;
+        }
+        
+        .remove-btn {
+            padding: 0.3rem 1rem;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .collection-item:hover .remove-btn {
+            opacity: 1;
+        }
+        
+        .quick-add-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .quick-add-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .quick-add-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            min-width: 200px;
+        }
+        
+        .quick-add-form button {
+            padding: 0.8rem 2rem;
+            background: var(--sunset-gold);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .export-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .export-btn {
+            padding: 0.8rem 2rem;
+            background: var(--acacia-green);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .collection-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .quick-add-form {
+                flex-direction: column;
+            }
+            
+            .remove-btn {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <h1 class="site-title">🌍 <span class="highlight">African Tongue</span> Lyrics</h1>
+            <p class="tagline">Your Personal Collection</p>
+        </div>
+        <div class="user-controls">
+            <button class="my-collection-btn" onclick="window.location.href='my-collection.html'">
+                <i class="fas fa-star"></i> My Collection
+            </button>
+            <button class="admin-btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-home"></i> Home
+            </button>
+        </div>
+    </header>
+    
+    <main class="collection-page">
+        <div class="collection-header">
+            <h1><i class="fas fa-star"></i> Your Collection</h1>
+            <p>Artists and songs you've curated</p>
+            
+            <div class="collection-stats" id="collection-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="artist-count">0</span>
+                    <span>Artists</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="song-count">0</span>
+                    <span>Songs</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="language-count">0</span>
+                    <span>Languages</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="saved-count">0</span>
+                    <span>Saved</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('artists')">My Artists</div>
+                <div class="tab" onclick="switchTab('songs')">Saved Songs</div>
+                <div class="tab" onclick="switchTab('following')">Following</div>
+                <div class="tab" onclick="switchTab('recent')">Recently Viewed</div>
+            </div>
+            
+            <div class="tab-content active" id="artists-tab">
+                <div id="artists-list"></div>
+            </div>
+            
+            <div class="tab-content" id="songs-tab">
+                <div id="songs-list"></div>
+            </div>
+            
+            <div class="tab-content" id="following-tab">
+                <div id="following-list"></div>
+            </div>
+            
+            <div class="tab-content" id="recent-tab">
+                <div id="recent-list"></div>
+            </div>
+        </div>
+        
+        <div class="quick-add-section">
+            <h3><i class="fas fa-plus-circle"></i> Quick Add Artist</h3>
+            <form class="quick-add-form" onsubmit="quickAddArtist(event)">
+                <input type="text" id="quick-artist-name" placeholder="Artist name" required>
+                <input type="text" id="quick-artist-country" placeholder="Country" required>
+                <input type="text" id="quick-artist-languages" placeholder="Languages (comma separated)" required>
+                <button type="submit">Add to Collection</button>
+            </form>
+        </div>
+        
+        <div class="export-section">
+            <h3>Backup Your Collection</h3>
+            <button class="export-btn" onclick="exportCollection()">
+                <i class="fas fa-download"></i> Export Collection (JSON)
+            </button>
+        </div>
+    </main>
+    
+    <footer>
+        <p class="preservation-note">📜 Your personal archive of African languages</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCollectionStats();
+            loadArtistsTab();
+            loadSavedSongs();
+            loadFollowing();
+            loadRecentlyViewed();
+        });
+        
+        function loadCollectionStats() {
+            const artists = myArtists.length;
+            const songs = mySongs.length;
+            
+            // Count unique languages
+            const languages = new Set();
+            mySongs.forEach(s => languages.add(s.language));
+            
+            // Count saved songs
+            const saved = JSON.parse(localStorage.getItem('savedSongs') || '[]').length;
+            
+            document.getElementById('artist-count').textContent = artists;
+            document.getElementById('song-count').textContent = songs;
+            document.getElementById('language-count').textContent = languages.size;
+            document.getElementById('saved-count').textContent = saved;
+        }
+        
+        function loadArtistsTab() {
+            const container = document.getElementById('artists-list');
+            container.innerHTML = '';
+            
+            myArtists.forEach(artist => {
+                const item = document.createElement('div');
+                item.className = 'collection-item';
+                item.onclick = () => window.location.href = `artist.html?id=${artist.id}`;
+                
+                item.innerHTML = `
+                    <div class="item-icon">🎤</div>
+                    <div class="item-details">
+                        <div class="item-title">${artist.name}</div>
+                        <div class="item-subtitle">${artist.country} · ${artist.languages.join(' · ')}</div>
+                        <div class="item-meta">
+                            <span>${artist.songs?.length || 0} songs</span>
+                            <span>Added: ${artist.dateAdded}</span>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removeArtist(${artist.id}, event)">Remove</button>
+                `;
+                
+                container.appendChild(item);
+            });
+            
+            if (myArtists.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">No artists in your collection yet. Add some!</p>';
+            }
+        }
+        
+        function loadSavedSongs() {
+            const container = document.getElementById('songs-list');
+            container.innerHTML = '';
+            
+            const savedIds = JSON.parse(localStorage.getItem('savedSongs') || '[]');
+            const savedSongs = mySongs.filter(s => savedIds.includes(s.id));
+            
+            savedSongs.forEach(song => {
+                const item = document.createElement('div');
+                item.className = 'collection-item';
+                item.onclick = () => window.location.href = `song.html?id=${song.id}`;
+                
+                item.innerHTML = `
+                    <div class="item-icon">🎵</div>
+                    <div class="item-details">
+                        <div class="item-title">${song.title}</div>
+                        <div class="item-subtitle">${song.artist} · ${song.language}</div>
+                        <div class="item-meta">
+                            <span>${song.country}</span>
+                            <span>${song.year}</span>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removeSavedSong(${song.id}, event)">Remove</button>
+                `;
+                
+                container.appendChild(item);
+            });
+            
+            if (savedSongs.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">No saved songs yet. Save some from the song pages!</p>';
+            }
+        }
+        
+        function loadFollowing() {
+            const container = document.getElementById('following-list');
+            container.innerHTML = '';
+            
+            const followingIds = JSON.parse(localStorage.getItem('subscribedArtists') || '[]');
+            const followingArtists = myArtists.filter(a => followingIds.includes(a.id));
+            
+            followingArtists.forEach(artist => {
+                // Check for new songs
+                const oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                const newSongs = mySongs.filter(s => 
+                    s.artistId === artist.id && new Date(s.dateAdded) >= oneWeekAgo
+                );
+                
+                const item = document.createElement('div');
+                item.className = 'collection-item';
+                item.onclick = () => window.location.href = `artist.html?id=${artist.id}`;
+                
+                item.innerHTML = `
+                    <div class="item-icon">🔔</div>
+                    <div class="item-details">
+                        <div class="item-title">${artist.name}</div>
+                        <div class="item-subtitle">${artist.country}</div>
+                        <div class="item-meta">
+                            <span>Following since ${artist.dateAdded}</span>
+                            ${newSongs.length > 0 ? `<span style="color: #27AE60;">${newSongs.length} new song${newSongs.length > 1 ? 's' : ''}!</span>` : ''}
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="unfollowArtist(${artist.id}, event)">Unfollow</button>
+                `;
+                
+                container.appendChild(item);
+            });
+            
+            if (followingArtists.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">You are not following any artists yet. Follow artists to get updates!</p>';
+            }
+        }
+        
+        function loadRecentlyViewed() {
+            const container = document.getElementById('recent-list');
+            container.innerHTML = '';
+            
+            const recentIds = JSON.parse(localStorage.getItem('recentlyViewed') || '[]');
+            const recentSongs = mySongs.filter(s => recentIds.includes(s.id)).slice(0, 10);
+            
+            recentSongs.forEach(song => {
+                const item = document.createElement('div');
+                item.className = 'collection-item';
+                item.onclick = () => window.location.href = `song.html?id=${song.id}`;
+                
+                item.innerHTML = `
+                    <div class="item-icon">👁️</div>
+                    <div class="item-details">
+                        <div class="item-title">${song.title}</div>
+                        <div class="item-subtitle">${song.artist} · ${song.language}</div>
+                    </div>
+                `;
+                
+                container.appendChild(item);
+            });
+            
+            if (recentSongs.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 2rem;">No recently viewed songs. Start exploring!</p>';
+            }
+        }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tab + '-tab').classList.add('active');
+        }
+        
+        function quickAddArtist(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('quick-artist-name').value;
+            const country = document.getElementById('quick-artist-country').value;
+            const languages = document.getElementById('quick-artist-languages').value.split(',').map(l => l.trim());
+            
+            addArtist({
+                name: name,
+                country: country,
+                languages: languages,
+                image: `https://placehold.co/300x200/27ae60/white?text=${name.replace(' ', '+')}`,
+                songs: [],
+                yourRating: 3,
+                personalNotes: 'Quick added from collection page',
+                dateAdded: new Date().toISOString().split('T')[0]
+            });
+            
+            alert(`✅ ${name} added to your collection!`);
+            document.getElementById('quick-artist-name').value = '';
+            document.getElementById('quick-artist-country').value = '';
+            document.getElementById('quick-artist-languages').value = '';
+            
+            loadArtistsTab();
+            loadCollectionStats();
+        }
+        
+        function removeArtist(artistId, event) {
+            event.stopPropagation();
+            if (!confirm('Remove this artist from your collection?')) return;
+            
+            myArtists = myArtists.filter(a => a.id !== artistId);
+            saveArtists();
+            
+            loadArtistsTab();
+            loadCollectionStats();
+        }
+        
+        function removeSavedSong(songId, event) {
+            event.stopPropagation();
+            let saved = JSON.parse(localStorage.getItem('savedSongs') || '[]');
+            saved = saved.filter(id => id !== songId);
+            localStorage.setItem('savedSongs', JSON.stringify(saved));
+            
+            loadSavedSongs();
+            loadCollectionStats();
+        }
+        
+        function unfollowArtist(artistId, event) {
+            event.stopPropagation();
+            let following = JSON.parse(localStorage.getItem('subscribedArtists') || '[]');
+            following = following.filter(id => id !== artistId);
+            localStorage.setItem('subscribedArtists', JSON.stringify(following));
+            
+            loadFollowing();
+        }
+        
+        function exportCollection() {
+            const data = {
+                artists: myArtists,
+                songs: mySongs,
+                savedSongs: JSON.parse(localStorage.getItem('savedSongs') || '[]'),
+                following: JSON.parse(localStorage.getItem('subscribedArtists') || '[]'),
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `african-lyrics-collection-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+        }
+    </script>
+</body>
+</html>

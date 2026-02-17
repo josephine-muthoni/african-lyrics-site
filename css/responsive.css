@@ -1,0 +1,516 @@
+/* Enhanced Responsive Design with Mobile Animations */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+    .site-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 2.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .songs-grid,
+    .artist-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .family-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    /* Header Adjustments */
+    .main-header {
+        padding: 1rem 3%;
+    }
+    
+    .site-title {
+        font-size: 1.8rem;
+        animation: none; /* Reduce animations on mobile for performance */
+    }
+    
+    .tagline {
+        font-size: 0.9rem;
+    }
+    
+    /* Language Families - Scrollable on Mobile */
+    .language-families {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .family-btn {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    /* User Controls Stack */
+    .user-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .my-collection-btn,
+    .admin-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        min-height: 400px;
+        padding: 2rem 3%;
+        background-attachment: scroll; /* Disable parallax on mobile */
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+    
+    /* Search Bar */
+    .language-search {
+        flex-direction: column;
+        margin: 1rem auto;
+    }
+    
+    .language-search input,
+    .language-search button {
+        width: 100%;
+        border-radius: 50px;
+        margin: 0.3rem 0;
+    }
+    
+    .language-search button {
+        padding: 1rem;
+    }
+    
+    /* Live Updates Ticker */
+    .live-updates-ticker {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+    
+    /* Section Headers */
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .refresh-btn {
+        width: 100%;
+    }
+    
+    /* Grids - Single Column */
+    .songs-grid,
+    .artist-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .family-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Cards - Optimized for Touch */
+    .song-card,
+    .artist-card,
+    .family-card {
+        margin: 0;
+        transform: none !important; /* Disable 3D transforms on mobile */
+    }
+    
+    .song-card:active,
+    .artist-card:active,
+    .family-card:active {
+        transform: scale(0.98) !important;
+        transition: transform 0.1s;
+    }
+    
+    /* Song Image */
+    .song-image {
+        height: 160px;
+    }
+    
+    .song-image::after {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    /* Artist Image */
+    .artist-image {
+        height: 180px;
+    }
+    
+    /* Footer Stats */
+    .footer-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+    
+    /* Auto-update Section */
+    .auto-update-section {
+        padding: 2rem 3%;
+    }
+    
+    .update-badge {
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    /* Header */
+    .site-title {
+        font-size: 1.5rem;
+    }
+    
+    .logo-container {
+        text-align: center;
+    }
+    
+    /* Language Families */
+    .language-families {
+        gap: 0.3rem;
+    }
+    
+    .family-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .family-btn .count {
+        font-size: 0.7rem;
+    }
+    
+    /* Hero Section */
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+    
+    /* Live Updates */
+    .live-updates-ticker {
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    /* Cards */
+    .song-info {
+        padding: 1rem;
+    }
+    
+    .song-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .song-artist {
+        font-size: 0.9rem;
+    }
+    
+    .song-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        font-size: 0.8rem;
+    }
+    
+    .artist-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Language Family Cards */
+    .family-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .family-header {
+        padding: 1.2rem;
+    }
+    
+    .family-preview {
+        padding: 1rem;
+    }
+    
+    .lang-tag {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 2rem 3%;
+    }
+    
+    .preservation-note {
+        font-size: 1rem;
+    }
+    
+    .auto-update-note {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+    }
+    
+    /* Notifications */
+    .notification {
+        left: 20px;
+        right: 20px;
+        width: auto;
+        font-size: 0.9rem;
+        padding: 0.8rem 1.2rem;
+    }
+}
+
+/* Small Mobile Phones */
+@media (max-width: 320px) {
+    .site-title {
+        font-size: 1.3rem;
+    }
+    
+    .family-btn {
+        width: 100%;
+        margin: 0.1rem 0;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .language-search input,
+    .language-search button {
+        font-size: 0.9rem;
+    }
+    
+    .song-image {
+        height: 140px;
+    }
+    
+    .artist-image {
+        height: 160px;
+    }
+}
+
+/* Landscape Orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 300px;
+        padding: 1.5rem 3%;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .language-search {
+        margin: 1rem auto;
+    }
+    
+    .language-search input,
+    .language-search button {
+        padding: 0.6rem 1rem;
+    }
+    
+    .live-updates-ticker {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* High Resolution Screens */
+@media (min-width: 1400px) {
+    .main-header,
+    .hero-section,
+    .auto-update-section,
+    .curator-section,
+    .language-showcase,
+    .recently-viewed {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    
+    .songs-grid,
+    .artist-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+    
+    .site-title {
+        font-size: 3rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 4rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .family-btn:hover,
+    .song-card:hover,
+    .artist-card:hover,
+    .family-card:hover {
+        transform: none;
+    }
+    
+    /* Add active states instead */
+    .family-btn:active,
+    .song-card:active,
+    .artist-card:active,
+    .family-card:active {
+        opacity: 0.7;
+        transform: scale(0.98);
+    }
+    
+    /* Ensure buttons are large enough for touch */
+    .family-btn,
+    .my-collection-btn,
+    .admin-btn,
+    .refresh-btn,
+    .view-all {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Increase tap targets */
+    .song-card,
+    .artist-card,
+    .family-card {
+        cursor: pointer;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    
+    .song-card,
+    .artist-card,
+    .family-card {
+        background: #2d2d44;
+        color: #fff;
+    }
+    
+    .song-info h3,
+    .artist-info h3,
+    .family-header h3 {
+        color: #fff;
+    }
+    
+    .song-artist {
+        color: var(--sunset-gold);
+    }
+    
+    .song-meta {
+        color: #aaa;
+    }
+    
+    .family-preview {
+        background: #2d2d44;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .family-btn,
+    .song-card,
+    .artist-card,
+    .family-card {
+        border: 2px solid white;
+    }
+    
+    .song-language-badge,
+    .release-date-badge,
+    .lang-badge {
+        border: 1px solid white;
+    }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .family-btn,
+    .song-card,
+    .artist-card,
+    .family-card {
+        transform: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .main-header,
+    .hero-section,
+    .language-search,
+    .user-controls,
+    .refresh-btn,
+    .auto-update-section,
+    .live-updates-ticker,
+    footer {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .song-card,
+    .artist-card,
+    .family-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        background: white;
+        color: black;
+    }
+    
+    .song-info h3,
+    .artist-info h3 {
+        color: black;
+    }
+}

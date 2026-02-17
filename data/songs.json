@@ -1,0 +1,179 @@
+{
+  "songs": [
+    {
+      "id": 101,
+      "title": "MALAWI",
+      "artist": "Diamond Platnumz",
+      "artistId": 1,
+      "language": "Swahili",
+      "dialect": "Kimvita",
+      "country": "Tanzania",
+      "year": 2025,
+      "lyrics": [
+        {
+          "line": 1,
+          "text": "MALAWI, MALAWI, wee",
+          "translation": "Angels, angels, you",
+          "cultural": "Poetic reference to beautiful women"
+        },
+        {
+          "line": 2,
+          "text": "Nakupenda wewe MALAWI",
+          "translation": "I love you, my angel"
+        },
+        {
+          "line": 3,
+          "text": "Roho yangu inakuita",
+          "translation": "My heart is calling you"
+        },
+        {
+          "line": 4,
+          "text": "Usiniumize MALAWI",
+          "translation": "Don't hurt me, my angel"
+        }
+      ],
+      "culturalNotes": "In Swahili coastal culture, 'MALAWI' (angels) is a poetic term for beloved women, reflecting Arabic influence on Swahili poetry.",
+      "dateAdded": "2026-02-15",
+      "plays": 1245
+    },
+    {
+      "id": 102,
+      "title": "Jeje",
+      "artist": "Diamond Platnumz",
+      "artistId": 1,
+      "language": "Swahili",
+      "country": "Tanzania",
+      "year": 2023,
+      "lyrics": [
+        {
+          "line": 1,
+          "text": "Jeje, jeje, mapenzi yanauma",
+          "translation": "Slowly, slowly, love hurts"
+        },
+        {
+          "line": 2,
+          "text": "Usiponipenda roho yangu",
+          "translation": "If you don't love me, my heart"
+        },
+        {
+          "line": 3,
+          "text": "Itaniuma, itaniuma",
+          "translation": "Will hurt me, will hurt me"
+        }
+      ],
+      "dateAdded": "2026-02-15",
+      "plays": 892
+    },
+    {
+      "id": 201,
+      "title": "Ye",
+      "artist": "Burna Boy",
+      "artistId": 2,
+      "language": "Yoruba/English",
+      "country": "Nigeria",
+      "year": 2018,
+      "lyrics": [
+        {
+          "line": 1,
+          "text": "Ye, ye, ye, ye",
+          "translation": "Yes, yes, yes, yes"
+        },
+        {
+          "line": 2,
+          "text": "Omo ologo, ologo, ologo",
+          "translation": "Glorious child, glorious, glorious"
+        },
+        {
+          "line": 3,
+          "text": "Won ni pe mi ni Ye",
+          "translation": "They call me Ye"
+        }
+      ],
+      "culturalNotes": "Yoruba praise poetry often uses repetition for emphasis. 'Omo ologo' is a term of endearment for someone praiseworthy.",
+      "dateAdded": "2026-02-10",
+      "plays": 3456
+    },
+    {
+      "id": 301,
+      "title": "Pata Pata",
+      "artist": "Miriam Makeba",
+      "artistId": 6,
+      "language": "Xhosa",
+      "country": "South Africa",
+      "year": 1967,
+      "lyrics": [
+        {
+          "line": 1,
+          "text": "Pata pata, pata pata",
+          "translation": "Touch touch, touch touch"
+        },
+        {
+          "line": 2,
+          "text": "Saguqula nje pata pata",
+          "translation": "It's just changed to touch touch"
+        },
+        {
+          "line": 3,
+          "text": "Yiyo le nto sithi pata pata",
+          "translation": "That's what we call touch touch"
+        }
+      ],
+      "culturalNotes": "The 'Pata Pata' dance was popular in South African townships in the 1950s. Miriam Makeba brought it to international fame.",
+      "dateAdded": "2026-01-20",
+      "plays": 5678
+    },
+    {
+      "id": 401,
+      "title": "Zombie",
+      "artist": "Fela Kuti",
+      "artistId": 5,
+      "language": "Yoruba/Pidgin",
+      "country": "Nigeria",
+      "year": 1976,
+      "lyrics": [
+        {
+          "line": 1,
+          "text": "Zombie, no go unless them tell am",
+          "translation": "Zombie, won't go unless told"
+        },
+        {
+          "line": 2,
+          "text": "Zombie, no think unless them tell am",
+          "translation": "Zombie, won't think unless told"
+        },
+        {
+          "line": 3,
+          "text": "Zombie, no talk unless them tell am",
+          "translation": "Zombie, won't talk unless told"
+        }
+      ],
+      "culturalNotes": "Fela's 'Zombie' was a political protest against Nigerian military. The song led to him being brutally attacked by soldiers.",
+      "dateAdded": "2026-01-28",
+      "plays": 4231
+    },
+    {
+      "id": 501,
+      "title": "Yambo",
+      "artist": "Salif Keita",
+      "artistId": 3,
+      "language": "Bambara/Malinké",
+      "country": "Mali",
+      "year": 2002,
+      "lyrics": [
+        {
+          "line": 1,
+          "text": "Yambo, yambo, yambo",
+          "translation": "Welcome, welcome, welcome"
+        },
+        {
+          "line": 2,
+          "text": "I ni ce, i ni ce",
+          "translation": "Thank you, thank you"
+        }
+      ],
+      "culturalNotes": "Salif Keita, an albino from a royal family, uses music to promote unity and acceptance in West Africa.",
+      "dateAdded": "2026-02-05",
+      "plays": 1892
+    }
+  ]
+}

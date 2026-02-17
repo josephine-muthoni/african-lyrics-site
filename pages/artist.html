@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Profile - African Tongue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/languages.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .artist-profile {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .artist-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .artist-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .artist-info h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .artist-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .subscribe-btn {
+            padding: 1rem 2rem;
+            background: var(--sunset-gold);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .subscribe-btn.subscribed {
+            background: var(--acacia-green);
+        }
+        
+        .new-release-alert {
+            background: var(--live-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        .song-list {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .song-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .song-item:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+        
+        .song-item:last-child {
+            border-bottom: none;
+        }
+        
+        .song-title {
+            font-weight: bold;
+            color: var(--night-sky);
+        }
+        
+        .song-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <h1 class="site-title">🌍 <span class="highlight">African Tongue</span> Lyrics</h1>
+        </div>
+        <div class="user-controls">
+            <button class="my-collection-btn" onclick="window.location.href='my-collection.html'">
+                <i class="fas fa-star"></i> My Collection
+            </button>
+            <button class="admin-btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-home"></i> Home
+            </button>
+        </div>
+    </header>
+    
+    <main class="artist-profile" id="artist-profile">
+        <!-- Artist data will load here -->
+    </main>
+    
+    <footer>
+        <p class="preservation-note">📜 Follow artists to get notified of new releases</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const artistId = urlParams.get('id');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadArtistData(artistId);
+        });
+        
+        function loadArtistData(id) {
+            const artist = getArtist(parseInt(id));
+            if (!artist) {
+                document.getElementById('artist-profile').innerHTML = '<h2>Artist not found</h2>';
+                return;
+            }
+            
+            const songs = getArtistSongs(artist.id);
+            const isSubscribed = JSON.parse(localStorage.getItem('subscribedArtists') || '[]').includes(artist.id);
+            
+            // Check for new songs in last 30 days
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            const newSongs = songs.filter(song => {
+                const songDate = new Date(song.dateAdded);
+                return songDate >= thirtyDaysAgo;
+            });
+            
+            const html = `
+                <div class="artist-header">
+                    <div class="artist-avatar">🎤</div>
+                    <div class="artist-info">
+                        <h1>${artist.name}</h1>
+                        <p><i class="fas fa-map-marker-alt"></i> ${artist.country}</p>
+                        <p><i class="fas fa-language"></i> ${artist.languages.join(' · ')}</p>
+                        
+                        <div class="artist-stats">
+                            <span><i class="fas fa-music"></i> ${songs.length} songs</span>
+                            <span><i class="fas fa-calendar"></i> Added ${artist.dateAdded}</span>
+                            ${newSongs.length > 0 ? `<span class="new-release-alert"><i class="fas fa-bolt"></i> ${newSongs.length} new</span>` : ''}
+                        </div>
+                        
+                        <button class="subscribe-btn ${isSubscribed ? 'subscribed' : ''}" onclick="toggleSubscribe(${artist.id})">
+                            <i class="fas ${isSubscribed ? 'fa-check' : 'fa-bell'}"></i>
+                            ${isSubscribed ? 'Following' : 'Follow Artist'}
+                        </button>
+                        
+                        ${artist.personalNotes ? `
+                            <div class="curator-note" style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 5px;">
+                                <i class="fas fa-pen"></i> Your note: ${artist.personalNotes}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+                
+                <div class="song-list">
+                    <h2>Songs by ${artist.name}</h2>
+                    ${songs.map(song => `
+                        <div class="song-item" onclick="window.location.href='song.html?id=${song.id}'">
+                            <div>
+                                <div class="song-title">${song.title}</div>
+                                <div class="song-meta">
+                                    <span>${song.language}</span> · 
+                                    <span>${song.year}</span> · 
+                                    <span><i class="fas fa-headphones"></i> ${song.plays || 0}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="song-date">${song.dateAdded}</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            document.getElementById('artist-profile').innerHTML = html;
+        }
+        
+        function toggleSubscribe(artistId) {
+            let subscribed = JSON.parse(localStorage.getItem('subscribedArtists') || '[]');
+            
+            if (subscribed.includes(artistId)) {
+                subscribed = subscribed.filter(id => id !== artistId);
+                alert('Unfollowed artist');
+            } else {
+                subscribed.push(artistId);
+                alert('✅ You will be notified when this artist releases new music!');
+            }
+            
+            localStorage.setItem('subscribedArtists', JSON.stringify(subscribed));
+            loadArtistData(artistId); // Reload to update button
+        }
+    </script>
+</body>
+</html>

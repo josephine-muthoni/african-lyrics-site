@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - African Tongue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .admin-dashboard {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .admin-header h1 {
+            font-size: 2rem;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--sunset-gold);
+        }
+        
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .admin-card h2 {
+            color: var(--night-sky);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--sunset-gold);
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            font-family: monospace;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .submit-btn {
+            background: var(--acacia-green);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+        
+        .submit-btn:hover {
+            background: #229954;
+        }
+        
+        .recent-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .recent-table th,
+        .recent-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recent-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .action-btn {
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 0 0.2rem;
+        }
+        
+        .edit-btn {
+            background: var(--sunset-gold);
+            color: white;
+        }
+        
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            border-radius: 20px;
+        }
+        
+        .tab:hover {
+            background: #f0f0f0;
+        }
+        
+        .tab.active {
+            background: var(--sunset-gold);
+            color: white;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .language-help {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .quick-action-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid var(--sunset-gold);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quick-action-btn:hover {
+            background: var(--sunset-gold);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <h1 class="site-title">🌍 <span class="highlight">African Tongue</span> Lyrics</h1>
+            <p class="tagline">Admin Dashboard</p>
+        </div>
+        <div class="user-controls">
+            <button class="my-collection-btn" onclick="window.location.href='../pages/my-collection.html'">
+                <i class="fas fa-star"></i> My Collection
+            </button>
+            <button class="admin-btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-home"></i> Home
+            </button>
+        </div>
+    </header>
+    
+    <main class="admin-dashboard">
+        <div class="admin-header">
+            <div>
+                <h1><i class="fas fa-cog"></i> Content Manager</h1>
+                <p>Add, edit, and manage your African language lyrics collection</p>
+            </div>
+            <button class="refresh-btn" onclick="location.reload()">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+        </div>
+        
+        <div class="admin-stats" id="admin-stats">
+            <div class="stat-card">
+                <div class="stat-value" id="total-artists">0</div>
+                <div>Artists</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="total-songs">0</div>
+                <div>Songs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="total-languages">0</div>
+                <div>Languages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="total-plays">0</div>
+                <div>Total Plays</div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchAdminTab('add-song')">➕ Add Song</button>
+            <button class="tab" onclick="switchAdminTab('add-artist')">👤 Add Artist</button>
+            <button class="tab" onclick="switchAdminTab('manage')">📋 Manage Content</button>
+            <button class="tab" onclick="switchAdminTab('import')">📤 Import/Export</button>
+            <button class="tab" onclick="switchAdminTab('language-guide')">📚 Language Guide</button>
+        </div>
+        
+        <!-- Add Song Tab -->
+        <div class="tab-pane active" id="add-song-tab">
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <h2>Add New Song</h2>
+                    <form onsubmit="adminAddSong(event)">
+                        <div class="form-group">
+                            <label>Song Title *</label>
+                            <input type="text" id="admin-song-title" placeholder="e.g., MALAWI" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Artist Name *</label>
+                            <input type="text" id="admin-song-artist" placeholder="e.g., Diamond Platnumz" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Language *</label>
+                                <select id="admin-song-language" required>
+                                    <option value="">Select Language</option>
+                                    <option value="Swahili">🇹🇿 Swahili (Kiswahili)</option>
+                                    <option value="Yoruba">🇳🇬 Yoruba</option>
+                                    <option value="Zulu">🇿🇦 Zulu</option>
+                                    <option value="Xhosa">🇿🇦 Xhosa</option>
+                                    <option value="Amharic">🇪🇹 Amharic</option>
+                                    <option value="Hausa">🇳🇬 Hausa</option>
+                                    <option value="Igbo">🇳🇬 Igbo</option>
+                                    <option value="Shona">🇿🇼 Shona</option>
+                                    <option value="Kikuyu">🇰🇪 Kikuyu</option>
+                                    <option value="Luganda">🇺🇬 Luganda</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Dialect (optional)</label>
+                                <input type="text" id="admin-song-dialect" placeholder="e.g., Kimvita">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Country *</label>
+                                <select id="admin-song-country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="Tanzania">🇹🇿 Tanzania</option>
+                                    <option value="Kenya">🇰🇪 Kenya</option>
+                                    <option value="Uganda">🇺🇬 Uganda</option>
+                                    <option value="Nigeria">🇳🇬 Nigeria</option>
+                                    <option value="Ghana">🇬🇭 Ghana</option>
+                                    <option value="South Africa">🇿🇦 South Africa</option>
+                                    <option value="Ethiopia">🇪🇹 Ethiopia</option>
+                                    <option value="Rwanda">🇷🇼 Rwanda</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="number" id="admin-song-year" value="2026" min="1900" max="2026">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Original Language Lyrics (line by line) *</label>
+                            <p class="language-help"><i class="fas fa-info-circle"></i> Enter each line separately. Include proper accents and diacritics.</p>
+                            <textarea id="admin-song-lyrics" placeholder="Line 1&#10;Line 2&#10;Line 3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>English Translation (line by line) *</label>
+                            <textarea id="admin-song-translation" placeholder="Translation line 1&#10;Translation line 2&#10;Translation line 3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Cultural Notes / Context</label>
+                            <textarea id="admin-song-notes" placeholder="Explain cultural references, idioms, or special meanings..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-plus-circle"></i> Add Song to Collection
+                        </button>
+                    </form>
+                </div>
+                
+                <div>
+                    <div class="admin-card">
+                        <h3>Quick Tips</h3>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Use proper diacritics: Yoruba (ẹ, ọ, ṣ)</li>
+                            <li>Include clicks for Zulu/Xhosa: c, q, x</li>
+                            <li>For Amharic, use Ge'ez script if possible</li>
+                            <li>Add cultural context for idioms</li>
+                            <li>Line count should match in lyrics and translation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3>Recently Added Songs</h3>
+                        <div id="recent-songs-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add Artist Tab -->
+        <div class="tab-pane" id="add-artist-tab">
+            <div class="admin-card">
+                <h2>Add New Artist</h2>
+                <form onsubmit="adminAddArtist(event)">
+                    <div class="form-group">
+                        <label>Artist Name *</label>
+                        <input type="text" id="admin-artist-name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Country *</label>
+                            <select id="admin-artist-country" required>
+                                <option value="">Select Country</option>
+                                <option value="Tanzania">🇹🇿 Tanzania</option>
+                                <option value="Kenya">🇰🇪 Kenya</option>
+                                <option value="Nigeria">🇳🇬 Nigeria</option>
+                                <option value="South Africa">🇿🇦 South Africa</option>
+                                <option value="Ghana">🇬🇭 Ghana</option>
+                                <option value="Mali">🇲🇱 Mali</option>
+                                <option value="Senegal">🇸🇳 Senegal</option>
+                                <option value="Ethiopia">🇪🇹 Ethiopia</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Languages *</label>
+                            <input type="text" id="admin-artist-languages" placeholder="e.g., Swahili, English" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Artist Bio / Description</label>
+                        <textarea id="admin-artist-bio" rows="4" placeholder="Brief biography..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Your Personal Notes</label>
+                        <textarea id="admin-artist-notes" rows="3" placeholder="Why you're adding this artist..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Initial Rating</label>
+                        <select id="admin-artist-rating">
+                            <option value="5">⭐⭐⭐⭐⭐ - Essential</option>
+                            <option value="4">⭐⭐⭐⭐ - Great</option>
+                            <option value="3">⭐⭐⭐ - Good</option>
+                            <option value="2">⭐⭐ - Interesting</option>
+                            <option value="1">⭐ - For reference</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-plus-circle"></i> Add Artist to Collection
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Manage Content Tab -->
+        <div class="tab-pane" id="manage-tab">
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <h2>Manage Artists</h2>
+                    <table class="recent-table" id="artists-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Songs</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="artists-list"></tbody>
+                    </table>
+                </div>
+                
+                <div class="admin-card">
+                    <h2>Manage Songs</h2>
+                    <table class="recent-table" id="songs-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th>Language</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="songs-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Import/Export Tab -->
+        <div class="tab-pane" id="import-tab">
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <h2>Export Collection</h2>
+                    <p>Download your entire collection as JSON backup</p>
+                    <button class="submit-btn" onclick="exportFullCollection()" style="background: var(--sunset-gold);">
+                        <i class="fas fa-download"></i> Export Collection
+                    </button>
+                </div>
+                
+                <div class="admin-card">
+                    <h2>Import Collection</h2>
+                    <p>Import songs and artists from JSON backup</p>
+                    <textarea id="import-data" rows="10" placeholder="Paste JSON data here..."></textarea>
+                    <button class="submit-btn" onclick="importCollection()" style="margin-top: 1rem;">
+                        <i class="fas fa-upload"></i> Import
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Language Guide Tab -->
+        <div class="tab-pane" id="language-guide-tab">
+            <div class="admin-card">
+                <h2>African Language Writing Guide</h2>
+                
+                <div class="language-help">
+                    <h3>🇹🇿 Swahili</h3>
+                    <p>Latin script, no tone marks. Common dialect variations exist.</p>
+                    <p><strong>Example:</strong> "Nakupenda wewe" (I love you)</p>
+                </div>
+                
+                <div class="language-help">
+                    <h3>🇳🇬 Yoruba</h3>
+                    <p>Latin with diacritics: underdots (ẹ, ọ, ṣ) and tone marks</p>
+                    <p><strong>Example:</strong> "Mo nífẹ́ rẹ" (I love you)</p>
+                </div>
+                
+                <div class="language-help">
+                    <h3>🇿🇦 Zulu / Xhosa</h3>
+                    <p>Latin with clicks: c (dental click), q (palatal click), x (lateral click)</p>
+                    <p><strong>Example:</strong> "Ngiyakuthanda" (I love you - Zulu)</p>
+                    <p><strong>Clicks:</strong> c (like 'tsk'), q (like cork pop), x (like encouraging horse)</p>
+                </div>
+                
+                <div class="language-help">
+                    <h3>🇪🇹 Amharic</h3>
+                    <p>Ge'ez script (Fidel) - each character represents a syllable</p>
+                    <p><strong>Example:</strong> "እወድሃለሁ" (I love you - male speaker)</p>
+                </div>
+                
+                <div class="language-help">
+                    <h3>Common Phrases in African Languages</h3>
+                    <table class="recent-table">
+                        <tr>
+                            <th>Language</th>
+                            <th>"I love you"</th>
+                            <th>"Thank you"</th>
+                        </tr>
+                        <tr><td>Swahili</td><td>Nakupenda</td><td>Asante</td></tr>
+                        <tr><td>Yoruba</td><td>Mo nífẹ́ rẹ</td><td>O ṣé</td></tr>
+                        <tr><td>Zulu</td><td>Ngiyakuthanda</td><td>Ngiyabonga</td></tr>
+                        <tr><td>Xhosa</td><td>Ndiyakuthanda</td><td>Enkosi</td></tr>
+                        <tr><td>Amharic</td><td>እወድሃለሁ</td><td>አመሰግናለሁ</td></tr>
+                        <tr><td>Hausa</td><td>Ina sonki</td><td>Na gode</td></tr>
+                        <tr><td>Igbo</td><td>A hụrụ m gị n'anya</td><td>Daalụ</td></tr>
+                        <tr><td>Shona</td><td>Ndinokuda</td><td>Ndatenda</td></tr>
+                        <tr><td>Kikuyu</td><td>Nĩngwendete</td><td>Nĩ wega</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p class="preservation-note">📜 Admin Panel - Add and manage African language lyrics</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script src="../js/admin-panel.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAdminStats();
+            loadRecentSongsList();
+            loadManageTables();
+        });
+        
+        function loadAdminStats() {
+            document.getElementById('total-artists').textContent = myArtists.length;
+            document.getElementById('total-songs').textContent = mySongs.length;
+            
+            const languages = new Set();
+            mySongs.forEach(s => languages.add(s.language));
+            document.getElementById('total-languages').textContent = languages.size;
+            
+            const plays = mySongs.reduce((sum, s) => sum + (s.plays || 0), 0);
+            document.getElementById('total-plays').textContent = plays;
+        }
+        
+        function loadRecentSongsList() {
+            const container = document.getElementById('recent-songs-list');
+            container.innerHTML = '';
+            
+            const recent = [...mySongs].sort((a, b) => 
+                new Date(b.dateAdded) - new Date(a.dateAdded)
+            ).slice(0, 5);
+            
+            recent.forEach(song => {
+                const div = document.createElement('div');
+                div.style.padding = '0.5rem 0';
+                div.style.borderBottom = '1px solid #eee';
+                div.innerHTML = `
+                    <strong>${song.title}</strong> - ${song.artist}<br>
+                    <small>${song.language} · Added: ${song.dateAdded}</small>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        function loadManageTables() {
+            const artistsBody = document.getElementById('artists-list');
+            artistsBody.innerHTML = '';
+            
+            myArtists.forEach(artist => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${artist.name}</td>
+                    <td>${artist.country}</td>
+                    <td>${artist.songs?.length || 0}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editArtist(${artist.id})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteArtist(${artist.id})">Del</button>
+                    </td>
+                `;
+                artistsBody.appendChild(row);
+            });
+            
+            const songsBody = document.getElementById('songs-list');
+            songsBody.innerHTML = '';
+            
+            mySongs.slice(0, 10).forEach(song => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${song.title}</td>
+                    <td>${song.artist}</td>
+                    <td>${song.language}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editSong(${song.id})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteSong(${song.id})">Del</button>
+                    </td>
+                `;
+                songsBody.appendChild(row);
+            });
+        }
+        
+        function switchAdminTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabId + '-tab').classList.add('active');
+        }
+        
+        function adminAddSong(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('admin-song-title').value;
+            const artist = document.getElementById('admin-song-artist').value;
+            const language = document.getElementById('admin-song-language').value;
+            const dialect = document.getElementById('admin-song-dialect').value;
+            const country = document.getElementById('admin-song-country').value;
+            const year = document.getElementById('admin-song-year').value;
+            const lyricsText = document.getElementById('admin-song-lyrics').value;
+            const translationText = document.getElementById('admin-song-translation').value;
+            const notes = document.getElementById('admin-song-notes').value;
+            
+            const lyricsLines = lyricsText.split('\n').filter(l => l.trim());
+            const translationLines = translationText.split('\n').filter(l => l.trim());
+            
+            const lyrics = [];
+            for (let i = 0; i < lyricsLines.length; i++) {
+                lyrics.push({
+                    line: i + 1,
+                    text: lyricsLines[i],
+                    translation: translationLines[i] || 'Translation pending'
+                });
+            }
+            
+            // Find or create artist
+            let artistId = null;
+            const existingArtist = myArtists.find(a => a.name.toLowerCase() === artist.toLowerCase());
+            
+            if (existingArtist) {
+                artistId = existingArtist.id;
+            } else {
+                artistId = Date.now();
+                const newArtist = {
+                    id: artistId,
+                    name: artist,
+                    country: country,
+                    languages: [language],
+                    songs: [],
+                    dateAdded: new Date().toISOString().split('T')[0]
+                };
+                myArtists.push(newArtist);
+                saveArtists();
+            }
+            
+            const songId = Date.now();
+            const newSong = {
+                id: songId,
+                title: title,
+                artist: artist,
+                artistId: artistId,
+                language: language,
+                dialect: dialect,
+                country: country,
+                year: year,
+                lyrics: lyrics,
+                culturalNotes: notes,
+                dateAdded: new Date().toISOString().split('T')[0],
+                plays: 0
+            };
+            
+            mySongs.push(newSong);
+            saveSongs();
+            
+            // Update artist's song list
+            const artistObj = myArtists.find(a => a.id === artistId);
+            if (artistObj) {
+                if (!artistObj.songs) artistObj.songs = [];
+                artistObj.songs.push({
+                    id: songId,
+                    title: title,
+                    language: language,
+                    year: year,
+                    dateAdded: newSong.dateAdded
+                });
+                saveArtists();
+            }
+            
+            alert(`✅ "${title}" added successfully!`);
+            event.target.reset();
+            loadAdminStats();
+            loadRecentSongsList();
+            loadManageTables();
+        }
+        
+        function adminAddArtist(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('admin-artist-name').value;
+            const country = document.getElementById('admin-artist-country').value;
+            const languagesStr = document.getElementById('admin-artist-languages').value;
+            const bio = document.getElementById('admin-artist-bio').value;
+            const notes = document.getElementById('admin-artist-notes').value;
+            const rating = document.getElementById('admin-artist-rating').value;
+            
+            const languages = languagesStr.split(',').map(l => l.trim());
+            
+            const newArtist = {
+                id: Date.now(),
+                name: name,
+                country: country,
+                languages: languages,
+                bio: bio,
+                songs: [],
+                dateAdded: new Date().toISOString().split('T')[0],
+                yourRating: parseInt(rating),
+                personalNotes: notes
+            };
+            
+            myArtists.push(newArtist);
+            saveArtists();
+            
+            alert(`✅ ${name} added to your collection!`);
+            event.target.reset();
+            loadAdminStats();
+            loadManageTables();
+        }
+        
+        function editArtist(id) {
+            const artist = myArtists.find(a => a.id === id);
+            if (!artist) return;
+            
+            const newName = prompt('Edit artist name:', artist.name);
+            if (newName) {
+                artist.name = newName;
+                saveArtists();
+                loadManageTables();
+            }
+        }
+        
+        function deleteArtist(id) {
+            if (!confirm('Delete this artist? This will NOT delete their songs.')) return;
+            
+            myArtists = myArtists.filter(a => a.id !== id);
+            saveArtists();
+            loadManageTables();
+            loadAdminStats();
+        }
+        
+        function editSong(id) {
+            const song = mySongs.find(s => s.id === id);
+            if (!song) return;
+            
+            const newTitle = prompt('Edit song title:', song.title);
+            if (newTitle) {
+                song.title = newTitle;
+                saveSongs();
+                loadManageTables();
+            }
+        }
+        
+        function deleteSong(id) {
+            if (!confirm('Delete this song?')) return;
+            
+            // Remove from artist's list
+            const song = mySongs.find(s => s.id === id);
+            if (song) {
+                const artist = myArtists.find(a => a.id === song.artistId);
+                if (artist && artist.songs) {
+                    artist.songs = artist.songs.filter(s => s.id !== id);
+                    saveArtists();
+                }
+            }
+            
+            mySongs = mySongs.filter(s => s.id !== id);
+            saveSongs();
+            loadManageTables();
+            loadAdminStats();
+        }
+        
+        function exportFullCollection() {
+            const data = {
+                artists: myArtists,
+                songs: mySongs,
+                exportDate: new Date().toISOString(),
+                version: "2.0"
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `african-lyrics-full-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+        }
+        
+        function importCollection() {
+            const jsonText = document.getElementById('import-data').value;
+            try {
+                const data = JSON.parse(jsonText);
+                
+                if (data.artists && Array.isArray(data.artists)) {
+                    myArtists = data.artists;
+                    saveArtists();
+                }
+                
+                if (data.songs && Array.isArray(data.songs)) {
+                    mySongs = data.songs;
+                    saveSongs();
+                }
+                
+                alert('✅ Import successful!');
+                location.reload();
+            } catch (e) {
+                alert('❌ Invalid JSON format');
+            }
+        }
+    </script>
+</body>
+</html>

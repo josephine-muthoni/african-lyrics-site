@@ -1,0 +1,256 @@
+{
+  "languages": {
+    "swahili": {
+      "name": "Swahili",
+      "nativeName": "Kiswahili",
+      "family": "bantu",
+      "countries": ["Tanzania", "Kenya", "Uganda", "Rwanda", "Burundi", "DRC", "Mozambique", "Comoros"],
+      "speakers": "150 million",
+      "script": "Latin",
+      "dialects": ["Kimvita", "Kiamu", "Kiunguja", "Kingwana"],
+      "grammar": "Bantu noun class system (8 classes)",
+      "sample": "Nakupenda - I love you"
+    },
+    "yoruba": {
+      "name": "Yoruba",
+      "nativeName": "Èdè Yorùbá",
+      "family": "west-african",
+      "countries": ["Nigeria", "Benin", "Togo"],
+      "speakers": "45 million",
+      "script": "Latin (with diacritics)",
+      "dialects": ["Oyo", "Ijebu", "Ife", "Ekiti"],
+      "tones": 3,
+      "sample": "Mo nífẹ́ rẹ - I love you"
+    },
+    "zulu": {
+      "name": "Zulu",
+      "nativeName": "isiZulu",
+      "family": "bantu",
+      "countries": ["South Africa", "Lesotho", "Eswatini"],
+      "speakers": "27 million",
+      "script": "Latin",
+      "clicks": ["c", "q", "x"],
+      "sample": "Ngiyakuthanda - I love you"
+    },
+    "xhosa": {
+      "name": "Xhosa",
+      "nativeName": "isiXhosa",
+      "family": "bantu",
+      "countries": ["South Africa", "Zimbabwe", "Lesotho"],
+      "speakers": "19 million",
+      "script": "Latin",
+      "clicks": ["c", "q", "x"],
+      "sample": "Ndiyakuthanda - I love you"
+    },
+    "amharic": {
+      "name": "Amharic",
+      "nativeName": "አማርኛ",
+      "family": "afro-asiatic",
+      "countries": ["Ethiopia"],
+      "speakers": "57 million",
+      "script": "Ge'ez (Fidel)",
+      "syllabary": "33 characters × 7 forms",
+      "sample": "እወድሃለሁ - I love you"
+    },
+    "hausa": {
+      "name": "Hausa",
+      "nativeName": "هَرْشَن هَوْسَ",
+      "family": "afro-asiatic",
+      "countries": ["Nigeria", "Niger", "Ghana", "Cameroon", "Chad", "Sudan"],
+      "speakers": "72 million",
+      "script": "Latin (Boko), Arabic (Ajami)",
+      "sample": "Ina sonki - I love you"
+    },
+    "igbo": {
+      "name": "Igbo",
+      "nativeName": "Asụsụ Igbo",
+      "family": "west-african",
+      "countries": ["Nigeria", "Equatorial Guinea"],
+      "speakers": "32 million",
+      "script": "Latin",
+      "tones": 3,
+      "sample": "A hụrụ m gị n'anya - I love you"
+    },
+    "shona": {
+      "name": "Shona",
+      "nativeName": "chiShona",
+      "family": "bantu",
+      "countries": ["Zimbabwe", "Mozambique", "Botswana"],
+      "speakers": "14 million",
+      "script": "Latin",
+      "dialects": ["Karanga", "Korekore", "Zezuru", "Manyika"],
+      "sample": "Ndinokuda - I love you"
+    },
+    "kikuyu": {
+      "name": "Kikuyu",
+      "nativeName": "Gĩkũyũ",
+      "family": "bantu",
+      "countries": ["Kenya"],
+      "speakers": "8 million",
+      "script": "Latin",
+      "dialects": ["Kirinyaga", "Muranga", "Kiambu"],
+      "sample": "Nĩngwendete - I love you"
+    },
+    "luganda": {
+      "name": "Luganda",
+      "nativeName": "Luganda",
+      "family": "bantu",
+      "countries": ["Uganda"],
+      "speakers": "7 million",
+      "script": "Latin",
+      "sample": "Nkwagala - I love you"
+    },
+    "kinyarwanda": {
+      "name": "Kinyarwanda",
+      "nativeName": "Ikinyarwanda",
+      "family": "bantu",
+      "countries": ["Rwanda", "Uganda", "DRC"],
+      "speakers": "12 million",
+      "script": "Latin",
+      "sample": "Ndagukunda - I love you"
+    },
+    "lingala": {
+      "name": "Lingala",
+      "nativeName": "Lingála",
+      "family": "bantu",
+      "countries": ["DRC", "Congo Republic", "Angola"],
+      "speakers": "20 million",
+      "script": "Latin",
+      "sample": "Nalingaka yó - I love you"
+    },
+    "twi": {
+      "name": "Twi",
+      "nativeName": "Twi",
+      "family": "west-african",
+      "countries": ["Ghana"],
+      "speakers": "9 million",
+      "script": "Latin",
+      "dialects": ["Asante", "Akuapem", "Fante"],
+      "sample": "Me dor wo - I love you"
+    },
+    "wolof": {
+      "name": "Wolof",
+      "nativeName": "Wolof",
+      "family": "west-african",
+      "countries": ["Senegal", "Gambia", "Mauritania"],
+      "speakers": "10 million",
+      "script": "Latin, Arabic",
+      "sample": "Nop la - I love you"
+    },
+    "fula": {
+      "name": "Fula",
+      "nativeName": "Fulfulde",
+      "family": "west-african",
+      "countries": ["Nigeria", "Senegal", "Guinea", "Mali", "Cameroon", "Niger", "Burkina Faso"],
+      "speakers": "25 million",
+      "script": "Latin, Arabic (Ajami)",
+      "sample": "Mi yidi ma - I love you"
+    },
+    "somali": {
+      "name": "Somali",
+      "nativeName": "Af-Soomaali",
+      "family": "afro-asiatic",
+      "countries": ["Somalia", "Ethiopia", "Kenya", "Djibouti"],
+      "speakers": "21 million",
+      "script": "Latin, Arabic, Osmanya",
+      "sample": "Waan ku jeclahay - I love you"
+    },
+    "oromo": {
+      "name": "Oromo",
+      "nativeName": "Afaan Oromoo",
+      "family": "afro-asiatic",
+      "countries": ["Ethiopia", "Kenya"],
+      "speakers": "36 million",
+      "script": "Latin, Ge'ez",
+      "sample": "Sin jaaladha - I love you"
+    },
+    "tigrinya": {
+      "name": "Tigrinya",
+      "nativeName": "ትግርኛ",
+      "family": "afro-asiatic",
+      "countries": ["Eritrea", "Ethiopia"],
+      "speakers": "9 million",
+      "script": "Ge'ez",
+      "sample": "የፍቅረካ እየ - I love you"
+    },
+    "arabic": {
+      "name": "Arabic (North African)",
+      "nativeName": "العربية",
+      "family": "afro-asiatic",
+      "countries": ["Egypt", "Sudan", "Libya", "Tunisia", "Algeria", "Morocco", "Mauritania"],
+      "speakers": "150 million",
+      "script": "Arabic",
+      "dialects": ["Egyptian", "Sudanese", "Maghrebi", "Hassaniya", "Libyan"],
+      "sample": "أنا أحبك - I love you"
+    },
+    "dholuo": {
+      "name": "Dholuo",
+      "nativeName": "Dholuo",
+      "family": "nilotic",
+      "countries": ["Kenya", "Tanzania", "Uganda", "South Sudan"],
+      "speakers": "5 million",
+      "script": "Latin",
+      "sample": "Aheri - I love you"
+    },
+    "maasai": {
+      "name": "Maasai",
+      "nativeName": "ɔl Maa",
+      "family": "nilotic",
+      "countries": ["Kenya", "Tanzania"],
+      "speakers": "1.5 million",
+      "script": "Latin",
+      "sample": "Kanyaleng' - I love you"
+    },
+    "kalenjin": {
+      "name": "Kalenjin",
+      "nativeName": "Kalenjin",
+      "family": "nilotic",
+      "countries": ["Kenya"],
+      "speakers": "5 million",
+      "script": "Latin",
+      "dialects": ["Kipsigis", "Nandi", "Keiyo", "Tugen", "Pokot"],
+      "sample": "Acham - I love you"
+    },
+    "dinka": {
+      "name": "Dinka",
+      "nativeName": "Thuɔŋjäŋ",
+      "family": "nilotic",
+      "countries": ["South Sudan", "Sudan"],
+      "speakers": "4.5 million",
+      "script": "Latin",
+      "sample": "Anhiar - I love you"
+    },
+    "khoekhoe": {
+      "name": "Khoekhoegowab",
+      "nativeName": "Khoekhoegowab",
+      "family": "khoisan",
+      "countries": ["Namibia", "Botswana", "South Africa"],
+      "speakers": "300,000",
+      "script": "Latin",
+      "clicks": true,
+      "sample": "Sats ǁkhā - I love you"
+    },
+    "kung": {
+      "name": "!Kung",
+      "nativeName": "Juǀʼhoan",
+      "family": "khoisan",
+      "countries": ["Namibia", "Botswana", "Angola"],
+      "speakers": "45,000",
+      "script": "Latin",
+      "clicks": true,
+      "endangered": true,
+      "sample": "Mi ǃnàn - I love you"
+    },
+    "taa": {
+      "name": "Taa",
+      "nativeName": "ǃXóõ",
+      "family": "khoisan",
+      "countries": ["Botswana", "Namibia"],
+      "speakers": "2,500",
+      "script": "Latin",
+      "clicks": true,
+      "endangered": true,
+      "sample": "N̄ ń bà ǃʻàã - I love you"
+    }
+  }
+}
